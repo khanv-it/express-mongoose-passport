@@ -1,7 +1,7 @@
 const passport = require('passport');
 
-const localStrategy = require("./strategies/local");
-const jwtStrategy = require("./strategies/jwt");
+const localStrategy = require("./strategies/local.strategy");
+const jwtStrategy = require("./strategies/jwt.strategy");
 
 module.exports = (app) => {
     //Initialize passport

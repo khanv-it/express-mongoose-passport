@@ -5,6 +5,7 @@ exports.test = function (req, res) {
     res.send('Greetings from the Test controller!');
 };
 
+//post
 exports.create = function (req, res, next) {
     const product = new Product(
         {
@@ -26,6 +27,7 @@ exports.create = function (req, res, next) {
     });
 };
 
+//get
 // exports.details = function (req, res, next) {
 //     Product.findById(req.params.id, function (err, product) {
 //         if (err) return next(err);
@@ -37,6 +39,7 @@ exports.create = function (req, res, next) {
 //     });
 // };
 
+//GET
 //  async/await
 exports.details = async function (req, res, next) {
     try{
@@ -52,6 +55,7 @@ exports.details = async function (req, res, next) {
     }
 };
 
+//update
 exports.update = function (req, res, next) {
     Product.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, product) {
         if (err) return next(err);
@@ -59,6 +63,7 @@ exports.update = function (req, res, next) {
     });
 };
 
+//delete
 exports.delete = function (req, res, next) {
     Product.findByIdAndRemove(req.params.id, function (err) {
         if (err) return next(err);

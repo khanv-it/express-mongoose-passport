@@ -5,11 +5,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var userRouter = require('./routes/users');
 //KN - 10
-const prodsRouter = require('./routes/products');
+const prodRouter = require('./routes/products');
+const authRouter = require('./routes/auth');
 
 var mongoose = require('./mongoose');
+const passport = require('./auth/passport');
 
 var app = express();
 
@@ -17,6 +19,9 @@ var app = express();
 const defConnStr = 'mongodb://127.0.0.1:27017/express-mongoose-passport';
 const mongoDBConnStr = process.env.MONGODB_URI || defConnStr;
 mongoose(mongoDBConnStr);
+
+//
+passport(app);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,9 +34,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users', userRouter);
 //KN - 10
-app.use('/products', prodsRouter);
+app.use('/products', prodRouter);
+app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
