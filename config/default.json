@@ -1,6 +1,6 @@
 {
   "session": {
-    "secret": "dd318ed1fbb196ad7ed727bb0d0d1910",
+    "secret": "this is session secret",
     "maxAge": 86400000
   },  
   "authentication": {
@@ -12,7 +12,7 @@
         "options": {
           "expiresIn": "1d"
         },
-        "secret": "dd318ed1fbb196ad7ed727bb0d0d1910"
+        "secret": "this is jwt secret"
     }    
   }
 }
