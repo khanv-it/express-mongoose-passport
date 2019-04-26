@@ -16,6 +16,7 @@ exports.create = function (req, res, next) {
     product.save(function (err) {
         if (err) {
             //KN: Not a good practice: send the err to client
+            //Good POINT: auto set status to 500
             return next(err);
         }
         res.send('Product Created successfully');
@@ -25,15 +26,30 @@ exports.create = function (req, res, next) {
     });
 };
 
-exports.details = function (req, res, next) {
-    Product.findById(req.params.id, function (err, product) {
-        if (err) return next(err);
+// exports.details = function (req, res, next) {
+//     Product.findById(req.params.id, function (err, product) {
+//         if (err) return next(err);
+        
+//         //KN: will send product as a json
+//         //equal to
+//      // res.json(product);
+//          res.send(product);
+//     });
+// };
+
+//  async/await
+exports.details = async function (req, res, next) {
+    try{
+        const product = await Product.findById(req.params.id);
         
         //KN: will send product as a json
         //equal to
-        res.json(product);
-        // res.send(product);
-    });
+        // res.json(product);
+        return res.send(product);
+    }
+    catch(err){
+        return next(err);
+    }
 };
 
 exports.update = function (req, res, next) {

@@ -1,0 +1,18 @@
+{
+  "session": {
+    "secret": "dd318ed1fbb196ad7ed727bb0d0d1910",
+    "maxAge": 86400000
+  },  
+  "authentication": {
+    "local": {
+      "usernameField": "username",
+      "passwordField": "password"
+    },
+    "jwt": {
+        "options": {
+          "expiresIn": "1d"
+        },
+        "secret": "dd318ed1fbb196ad7ed727bb0d0d1910"
+    }    
+  }
+}
