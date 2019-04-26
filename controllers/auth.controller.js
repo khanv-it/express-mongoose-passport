@@ -4,6 +4,8 @@ const jwt            = require('jsonwebtoken');
 const jwtConfig      = require('../config/default.json').authentication.jwt;
 
 //post
+//REF: http://www.passportjs.org/docs/downloads/html/   
+//>> Custom Callback
 exports.genJWTFromUsernamePass = function (req, res, next) {
 
     passport.authenticate(
@@ -41,5 +43,5 @@ exports.genJWTFromUsernamePass = function (req, res, next) {
                 token
             });
 
-        })(req, res);//REMEMBER TO ADD THIS
+        })(req, res, next);//REMEMBER TO ADD THIS
 };
