@@ -24,16 +24,6 @@ module.exports.strategy = new JwtStrategy(opts, async (jwt_payload, next) => {
 
         if(user) {
           return next(null, user);
-          /*
-          If {session: true}, example: 
-            router.get('/testJWTNoSession', passport.authenticate('jwt',{session: true}), prodContr.test);
-            router.get('/testJWTNoSession', passport.authenticate('jwt'), prodContr.test);
-          ==> This will call serializeUser 
-          
-          If {session: false}, example: 
-            router.get('/testJWTNoSession', passport.authenticate('jwt',{session: false}), prodContr.test);
-          ==> serializeUser will NOT be called
-          */
         } else {
           return next(null, false, { message: 'User not found'});
         }

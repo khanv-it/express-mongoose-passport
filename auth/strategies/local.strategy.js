@@ -1,5 +1,4 @@
 const LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcrypt');
 
 const User = require('../../models/user.model');
 
@@ -28,24 +27,3 @@ module.exports.strategy = new LocalStrategy(
         }
     }
 );
-
-module.exports.serializeUser = (user, next) => next(null, user.username);
-
-module.exports.deserializeUser = async (username, next) => {
-    try {
-        const user = await User.findOne({username});
-        if(user) {
-            return next(null, user);
-        } else {
-            return next(null, false);//return next(null, null); ??
-        }
-    } catch(err) {
-        console.log(`deserializeUser error: ${err}`);
-        //REF: http://www.passportjs.org/docs/downloads/html/  >> Verify Callback
-        // >> Sessions
-        return next(err, false);
-        // return next(err, false, { message: 'Internal Server Error'});
-        // return next(err, user);//as user is a falsy
-        // return next(null, false);        
-    }
-};
