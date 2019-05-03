@@ -11,8 +11,8 @@ exports.genJWTFromUsernamePass = function (req, res, next) {
     passport.authenticate(
         'local', 
         //pass {session: false} in passport options, so that it wont save the user in the session. (https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314)
-        //==> {session: true} WILL NOT cause an error when no session lib is used by express. Therefore, in the case of not using session, the following line can be omit (let {session: true} by default)
-        // {session: false},
+        //==> {session: true} WILL NOT cause an error when no session lib is used by express. Therefore, in the case of not using session, the following line can be omitted (let {session: true} by default)
+        {session: false},
         //here: the next param in LocalStrategy
         (err, user, info) => {
             //System Error: in this case, only err is available
