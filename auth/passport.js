@@ -25,5 +25,5 @@ module.exports = (app) => {
     passport.deserializeUser(localStrategy.deserializeUser);
 
     //For authenticating by jwt strategy
-    //passport.use(jwtStrategy.strategy);
+    passport.use(jwtStrategy.strategy);
 };
