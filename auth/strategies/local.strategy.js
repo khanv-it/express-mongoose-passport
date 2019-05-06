@@ -34,6 +34,7 @@ module.exports.serializeUser = (user, next) => next(null, user.username);
 module.exports.deserializeUser = async (username, next) => {
     try {
         const user = await User.findOne({username});
+        
         if(user) {
             return next(null, user);
         } else {

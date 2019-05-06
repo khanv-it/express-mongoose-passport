@@ -1,4 +1,4 @@
-const passport                 = require('passport');
+const passport       = require('passport');
 const jwt            = require('jsonwebtoken');
 
 const jwtConfig      = require('../config/default.json').authentication.jwt;
@@ -45,4 +45,21 @@ exports.genJWTFromUsernamePass = function (req, res, next) {
             });
 
         })(req, res, next);//REMEMBER TO ADD THIS
+};
+
+//get
+//exports.getLogin =  function (req, res, next) {
+exports.getLogin =  function (req, res) {
+    res.render('login');
+};
+
+//exports.postLogin =  function (req, res, next) {
+exports.postLogin =  function (req, res) {
+    res.redirect('/');
+};
+
+//exports.getLogout =  function (req, res, next) {
+exports.getLogout =  function (req, res) {
+    req.logout();
+    res.redirect('/');
 };

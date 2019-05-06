@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const expressSession = require('express-session');
 
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/users');
@@ -14,6 +15,9 @@ var mongoose = require('./mongoose');
 const passport = require('./auth/passport');
 
 var app = express();
+
+//25. Use config file
+app.set('config',require('./config/default'));
 
 //KN - 7
 const defConnStr = 'mongodb://127.0.0.1:27017/express-mongoose-passport';
@@ -30,7 +34,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//
+//26.
+// required for passport
+app.use(expressSession(app.get('config').session));
+
+//config passport
 passport(app);
 
 app.use('/', indexRouter);

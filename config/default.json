@@ -1,7 +1,9 @@
 {
   "session": {
-    "secret": "this is session secret",
-    "maxAge": 86400000
+    "secret": "this is the secret used to sign the session ID cookie",
+    "resave": false,
+    "saveUninitialized": false,
+    "cookie": { "maxAge": 86400000 }
   },  
   "authentication": {
     "local": {
