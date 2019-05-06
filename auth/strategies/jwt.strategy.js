@@ -25,6 +25,9 @@ module.exports.strategy = new JwtStrategy(opts, async (jwtPayload, next) => {
         const user = await User.findOne({username: jwtPayload.username});
 
         if(user) {
+          /*
+            IMPORTANT NOTE: set req.user = user
+          */
           return next(null, user);
           /*
           If {session: true}, example: 

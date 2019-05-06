@@ -29,8 +29,12 @@ module.exports.strategy = new LocalStrategy(
     }
 );
 
+//from req.user
+//set req.session.passport.user = user.username
 module.exports.serializeUser = (user, next) => next(null, user.username);
 
+//from "session" req.session.passport.user (== user.username)
+//find user & set it to req.user
 module.exports.deserializeUser = async (username, next) => {
     try {
         const user = await User.findOne({username});
