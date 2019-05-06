@@ -20,6 +20,8 @@ const opts = {
 
 module.exports.strategy = new JwtStrategy(opts, async (jwt_payload, next) => {
     try {
+        //find the user in db if needed. This functionality may be omitted if you store everything you'll need in JWT payload.
+        //REF: https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314
         const user = await User.findOne({username: jwt_payload.username});
 
         if(user) {
